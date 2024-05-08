@@ -567,7 +567,25 @@
         </profile>
         <profile>
             <id>sonatype-oss-release</id>
-            <!-- profile used by mvn release, uses default config -->
+            <activation>
+                <jdk>${jdk.version}</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>${enforcer.plugin.version}</version> <!-- Adjust version as needed -->
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${jdk.version}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
